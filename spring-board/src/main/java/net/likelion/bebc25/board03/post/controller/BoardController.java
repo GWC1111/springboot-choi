@@ -1,8 +1,8 @@
-package net.likelion.bebc25.board02.post.controller;
+package net.likelion.bebc25.board03.post.controller;
 
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
-import net.likelion.bebc25.board02.post.dto.PostDto;
+import net.likelion.bebc25.board03.post.dto.PostDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,7 +14,7 @@ import java.util.List;
 
 @Controller
 @Slf4j
-@RequestMapping("/02/board")
+@RequestMapping("/03/board")
 public class BoardController {
 
     private final List<PostDto> fakePosts;

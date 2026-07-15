@@ -1,4 +1,4 @@
-package net.likelion.bebc25.board02.post.dto;
+package net.likelion.bebc25.board03.post.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
