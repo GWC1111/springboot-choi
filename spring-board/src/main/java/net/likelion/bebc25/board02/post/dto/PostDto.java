@@ -1,4 +1,4 @@
-package net.likelion.bebc25.board.post.dto;
+package net.likelion.bebc25.board02.post.dto;
 
 import java.time.LocalDateTime;
 
@@ -7,6 +7,7 @@ public class PostDto {
     private String title;
     private String content;
     private String author;
+    private boolean secret;
     private LocalDateTime createdAt;
 
     public PostDto() {}
@@ -23,6 +24,14 @@ public class PostDto {
         this.content = content;
         this.author = author;
         this.createdAt = createdAt;
+    }
+
+    public boolean isSecret() {
+        return secret;
+    }
+
+    public void setSecret(boolean secret) {
+        this.secret = secret;
     }
 
     public int getId() {
