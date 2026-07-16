@@ -45,10 +45,15 @@ public class MemberServiceImpl implements MemberService {
   public MemberDto login(String username, String password) {
     MemberDto member = memberRepository.findByUsername(username);
 
-    if(member.getUsername().equals(username) && member.getPassword().equals(password)) {
-      return member;
+    if (member == null) {
+      return null;
     }
-    return null;
+
+    if(member.getPassword().equals(password)) {
+      return member;
+    } else {
+      return null;
+    }
   }
 
   /**

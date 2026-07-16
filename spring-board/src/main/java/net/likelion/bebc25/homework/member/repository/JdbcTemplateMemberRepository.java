@@ -1,6 +1,7 @@
 package net.likelion.bebc25.homework.member.repository;
 
 import net.likelion.bebc25.homework.member.dto.MemberDto;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -56,7 +57,12 @@ public class JdbcTemplateMemberRepository implements MemberRepository {
      */
     @Override
     public MemberDto findByUsername(String username) {
-        return jdbcTemplate.queryForObject("SELECT * FROM member2 WHERE username = ?", memberRowMapper, username);
+        try {
+            return jdbcTemplate.queryForObject("SELECT * FROM member2 WHERE username = ?", memberRowMapper, username);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+
     }
 
     /**
