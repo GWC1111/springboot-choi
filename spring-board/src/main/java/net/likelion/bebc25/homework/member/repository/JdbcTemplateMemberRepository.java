@@ -45,7 +45,7 @@ public class JdbcTemplateMemberRepository implements MemberRepository {
      */
     @Override
     public void save(MemberDto member) {
-        // 실습 영역
+        // member 삽입
         jdbcTemplate.update("INSERT INTO member2 (username, password, email) VALUES (?, ?, ?)"
                 , member.getUsername()
                 , member.getPassword()
@@ -58,8 +58,10 @@ public class JdbcTemplateMemberRepository implements MemberRepository {
     @Override
     public MemberDto findByUsername(String username) {
         try {
+            // 데이터베이스에 username이 존재하는 지 검색
             return jdbcTemplate.queryForObject("SELECT * FROM member2 WHERE username = ?", memberRowMapper, username);
         } catch (EmptyResultDataAccessException e) {
+            // 존재하지 않을 경우 null 반환
             return null;
         }
 
@@ -78,7 +80,7 @@ public class JdbcTemplateMemberRepository implements MemberRepository {
      */
     @Override
     public void update(MemberDto member) {
-        // 실습 영역
+        // 해당 id 튜플의 password 값 변경
         jdbcTemplate.update("UPDATE member2 SET password = ? WHERE id = ?"
                 , member.getPassword()
                 , member.getId());
@@ -89,7 +91,7 @@ public class JdbcTemplateMemberRepository implements MemberRepository {
      */
     @Override
     public void deleteById(int id) {
-        // 실습 영역
+        // 해당 id 튜플 삭제
         jdbcTemplate.update("DELETE FROM member2 WHERE id = ?", id);
     }
 

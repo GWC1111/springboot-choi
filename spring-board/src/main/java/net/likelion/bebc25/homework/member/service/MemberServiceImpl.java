@@ -29,7 +29,7 @@ public class MemberServiceImpl implements MemberService {
    */
   @Override
   public boolean register(MemberDto member) {
-    // 실습 영역
+    // member의 username이 데이터베이스에 존재하지 않을 경우 회원가입 허용 (중복된 username으로 회원가입 불가)
     if(memberRepository.findByUsername(member.getUsername()) == null) {
       memberRepository.save(member);
       return true;
@@ -45,13 +45,16 @@ public class MemberServiceImpl implements MemberService {
   public MemberDto login(String username, String password) {
     MemberDto member = memberRepository.findByUsername(username);
 
+    // 존재하지 않는 username일 경우
     if (member == null) {
       return null;
     }
 
+    // password가 일치할 경우
     if(member.getPassword().equals(password)) {
       return member;
     } else {
+      // password가 일치하지 않을 경우
       return null;
     }
   }

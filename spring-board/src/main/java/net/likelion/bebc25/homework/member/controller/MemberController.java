@@ -66,10 +66,10 @@ public class MemberController {
   public String register(@Valid @ModelAttribute("member") MemberDto memberDto, BindingResult bindingResult,
                          Model model) {
     // 실습 영역
-    if(bindingResult.hasErrors()) {
+    if(bindingResult.hasErrors()) { // username, password가 조건을 만족하지 않을 경우
       return "member/register";
     }
-    if(!(memberService.register(memberDto))) {
+    if(!(memberService.register(memberDto))) { // 회원가입 시 username이 중복된 경우
       model.addAttribute("errorMessage", "중복된 아이디입니다.");
       return "member/register";
     }
@@ -98,9 +98,9 @@ public class MemberController {
   public String login(@RequestParam String username, @RequestParam String password,
                       Model model, @ModelAttribute("member") MemberDto memberDto) {
     // 실습 영역
-    if(memberService.login(username, password) != null){
+    if(memberService.login(username, password) != null){ // login 성공
       return "redirect:/member/list.html";
-    } else {
+    } else { // login 실패
       model.addAttribute("errorMessage", "아이디 또는 비밀번호가 맞지 않습니다.");
       return "member/login";
     }
@@ -131,7 +131,7 @@ public class MemberController {
   @PostMapping("/edit")
   public String edit(@Valid @ModelAttribute("member") MemberDto memberDto, BindingResult bindingResult) {
     // 실습 영역
-    if(bindingResult.hasErrors()) {
+    if(bindingResult.hasErrors()) { // password가 조건을 만족하지 않을 경우
       return "member/edit";
     }
     memberService.modifyInfo(memberDto);
