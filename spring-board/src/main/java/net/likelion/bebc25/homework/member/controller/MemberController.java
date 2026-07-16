@@ -129,8 +129,11 @@ public class MemberController {
    * @return 회원 목록 화면으로의 redirect 경로
    */
   @PostMapping("/edit")
-  public String edit(@ModelAttribute MemberDto memberDto) {
+  public String edit(@Valid @ModelAttribute("member") MemberDto memberDto, BindingResult bindingResult) {
     // 실습 영역
+    if(bindingResult.hasErrors()) {
+      return "member/edit";
+    }
     memberService.modifyInfo(memberDto);
     return "redirect:/member/list.html";
   }
